@@ -38,6 +38,7 @@ let playersList = [
 
 function App() {
   const [players, setPlayers] = useState(playersList);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   // Fetching data from API
   // The function does not work! 
@@ -50,7 +51,6 @@ function App() {
   //     })
   //     .catch((error) => console.log(error));
   // }, []);
-
 
   // Functions for sorting players
   function sortAscOrder() {
@@ -69,10 +69,24 @@ function App() {
     setPlayers(sortedPlayers);
   }
 
+  //Function for selecting active person
+  function handleSelectedPlayer(selectedPlayer) {
+    console.log("Selecting new active player...");
+    setSelectedPlayer(selectedPlayer);
+  }
+
   return (
     <div className="mt-5 mx-5">
-      <Content onSortAsc={sortAscOrder} onSortDesc={sortDescOrder}/>
-      <Overview players={players} />
+      <Content
+        activePlayer={selectedPlayer}
+        onSortAsc={sortAscOrder}
+        onSortDesc={sortDescOrder}
+      />
+      <Overview
+        onSelectPlayer={handleSelectedPlayer}
+        activePlayer={selectedPlayer}
+        players={players}
+      />
     </div>
   );
 }

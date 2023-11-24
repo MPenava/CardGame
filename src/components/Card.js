@@ -1,14 +1,35 @@
-function Card({realName, playerName, asset}) {
+function Card({
+  activePlayer,
+  onSelectPlayer,
+  player,
+  realName,
+  playerName,
+  asset,
+}) {
   return (
-    <article className="p-6 m-2 hover:bg-gray-500 border-2 border-solid border-white dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer">
+    <article
+      onClick={() => {
+        onSelectPlayer({
+          ...player,
+        });
+      }}
+      className="p-6 m-2 hover:bg-gray-500 border-2 border-solid border-white dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer"
+      style={{
+        backgroundColor:
+          activePlayer && activePlayer.realName === realName ? "#6b7280" : "",
+      }}
+    >
       <p className="text-md text-white truncate">
-        <span className="mr-1">-</span>{realName}
+        <span className="mr-1">-</span>
+        {realName}
       </p>
       <p className="text-md text-white truncate">
-        <span className="mr-1">-</span>{playerName}
+        <span className="mr-1">-</span>
+        {playerName}
       </p>
       <p className="text-md text-white truncate">
-        <span className="mr-1">-</span>{asset}
+        <span className="mr-1">-</span>
+        {asset}
       </p>
     </article>
   );
