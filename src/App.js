@@ -1,8 +1,14 @@
-import './App.css';
+import "./App.css"
+import Content from "./components/Content.js";
+import Overview from "./components/Overview.js";
+
 
 function App() {
   return (
-    <h1 className="text-7xl text-center text-blue-400">Hello World</h1>
+    <div className= "mt-5 mx-5">
+      <Content/>
+      <Overview/>
+    </div>
   );
 }
 
