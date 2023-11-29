@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Content from "./components/Content.js";
 import Overview from "./components/Overview.js";
@@ -75,12 +75,33 @@ function App() {
     setSelectedPlayer(selectedPlayer);
   }
 
+  function sendData(){
+    if(selectedPlayer){
+      console.log("Sending data of active player...");
+
+      fetch('http://localhost:3000/players', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(selectedPlayer),
+      })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
   return (
     <div className="mt-5 mx-5">
       <Content
         activePlayer={selectedPlayer}
         onSortAsc={sortAscOrder}
         onSortDesc={sortDescOrder}
+        onSendData={sendData}
       />
       <Overview
         onSelectPlayer={handleSelectedPlayer}
