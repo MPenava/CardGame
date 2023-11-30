@@ -45,13 +45,23 @@ function App() {
   // Fetching data from API
   // The function does not work!
   // useEffect(() => {
-  //   fetch("http://65.109.2.102:5000/api/players")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setPlayers(data);
-  //       console.log(data);
-  //     })
-  //     .catch((error) => console.log(error));
+  //   const loadData = async () => {
+  //     try {
+  //       let response = await fetch(
+  //         "http://65.109.2.102:5000/api/players"
+  //       );
+  //       if (response.status === 200) {
+  //         let data = await response.json();
+  //         setPlayers(data);
+  //         console.log(data);
+  //       } else {
+  //         throw "Error fetching players list";
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   loadData();
   // }, []);
 
   // Functions for sorting players
@@ -71,12 +81,13 @@ function App() {
     setPlayers(sortedPlayers);
   }
 
-  //Function for selecting active person
+  //Function for selecting active player
   function handleSelectedPlayer(selectedPlayer) {
     console.log("Selecting new active player...");
     setSelectedPlayer(selectedPlayer);
   }
 
+  //Function for sending data of active player
   function sendData() {
     if (selectedPlayer) {
       console.log("Sending data of active player...");
