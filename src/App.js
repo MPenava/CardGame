@@ -116,6 +116,7 @@ function App() {
           onSortAsc={sortAscOrder}
           onSortDesc={sortDescOrder}
           onSendData={sendData}
+          selectedPlayer={selectedPlayer}
         />
       </main>
       <Overview
